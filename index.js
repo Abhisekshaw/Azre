@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose');
 const { connectToDatabase } = require('./config/db.config');
 const Hardware = require('./routes/hardware.route');
+const gatewayRoutes = require('./routes/gatewayRoutes');
 // const timeout = require('connect-timeout');
 dotenv.config();
 app.use(express.json());
@@ -56,6 +57,7 @@ app.get('/health', (req, res) => {
 
 // API Routes
 app.use('/api/hardware', Hardware);
+app.use('/api', gatewayRoutes);
 
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || `http://localhost:${PORT}`;

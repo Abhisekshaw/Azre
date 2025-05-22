@@ -30,14 +30,6 @@ const GatewaySchema = new mongoose.Schema({
       type: Number,
       required: true
     },
-    P_Abs: {
-      type: Number,
-      required: true
-    },
-    Qm: {
-      type: Number,
-      required: true
-    },
     Qb: {
       type: Number,
       required: true

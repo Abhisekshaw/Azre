@@ -13,10 +13,7 @@ const connectToDatabase = async () => {
     let currentDate = (new Date()).toString();
 
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(process.env.MONGODB_URI, );
         isConnected = true;
 
         const dbInfo = {
