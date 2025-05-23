@@ -20,7 +20,7 @@ exports.Store = async (req, res) => {
       },
       flow_data: {
         Batt_R: data.flow_data.Batt_R,
-        Pb: data.flow_data.Pb,
+        Pb: data.flow_data.pb,
         Tb: data.flow_data.Tb,
         Qb: data.flow_data.Qb,
         VmT: data.flow_data.VmT,
