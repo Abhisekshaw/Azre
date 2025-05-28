@@ -8,8 +8,9 @@ const GatewayModels = require('../models/gateway.model'); // Adjust the path as 
  */
 const getGatewayDataByTimeRange = async (req, res) => {
   try {
-    let { start, end } = req.query;
-
+    let { start, end } = req.body;
+    console.log(`Received request to get gateway data from ${start} to ${end}`);
+    
     // Validate inputs
     if (!start || !end) {
       return res.status(400).json({ message: 'Start and End time are required in query parameters' });
