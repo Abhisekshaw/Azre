@@ -61,7 +61,6 @@ app.get('/health', (req, res) => {
 app.use('/api/hardware', Hardware);
 app.use('/api', gatewayRoutes);
 
-// http://localhost:5000/api/gateway-data?start=unixStart&end=unixEnd
 
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || `http://localhost:${PORT}`;
