@@ -5,10 +5,12 @@ const mongoose = require('mongoose');
 const { connectToDatabase } = require('./config/db.config');
 const Hardware = require('./routes/hardware.route');
 const gatewayRoutes = require('./routes/gatewayRoutes');
+const cors = require('cors');
 // const timeout = require('connect-timeout');
 dotenv.config();
 app.use(express.json());
 const os = require('os');
+app.use(cors());
 
 // Connect to the database
 connectToDatabase();
@@ -59,7 +61,9 @@ app.get('/health', (req, res) => {
 app.use('/api/hardware', Hardware);
 app.use('/api', gatewayRoutes);
 
-const PORT = process.env.PORT || 3030;
+// http://localhost:5000/api/gateway-data?start=unixStart&end=unixEnd
+
+const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || `http://localhost:${PORT}`;
 
 app.listen(PORT, () => {
