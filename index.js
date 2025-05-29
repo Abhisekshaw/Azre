@@ -62,7 +62,7 @@ app.use('/api/hardware', Hardware);
 app.use('/api', gatewayRoutes);
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3030;
 const HOST = process.env.HOST || `http://localhost:${PORT}`;
 
 app.listen(PORT, () => {
