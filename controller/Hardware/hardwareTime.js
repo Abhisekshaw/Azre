@@ -3,8 +3,7 @@ exports.hardwaretime = async (req, res) => {
         const currentTimeStamp = Math.floor(Date.now()/1000);
         res.status(200).json({
             success: true,
-            status: "TMS",
-            timestamp:currentTimeStamp
+            TMS:`${currentTimeStamp}`
         })
     } catch (err) {
        res.status(500).json({
