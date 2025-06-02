@@ -1,4 +1,4 @@
-const GatewayModels = require('../models/gateway.model'); // Adjust the path as necessary
+const DeviceModelFlowmeter = require('../models/device.modelFlowmeter'); // Adjust the path as necessary
 
 /**
  * Get Gateway data within a time range (Unix timestamp in seconds)
@@ -24,7 +24,7 @@ const getGatewayDataByTimeRange = async (req, res) => {
     }
 
     // Fetch data within the given time range
-    const records = await GatewayModels.find({
+    const records = await DeviceModelFlowmeter.find({
       'd_details.timestamp': {
         $gte: start,
         $lte: end

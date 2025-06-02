@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const moment = require('moment-timezone');
 
-const GatewaySchema = new mongoose.Schema({
+const FlowmeterSchema = new mongoose.Schema({
   d_details: {
     gatewayID: {
       type: String,
@@ -45,6 +45,6 @@ const GatewaySchema = new mongoose.Schema({
   }
 }, { timestamps: true }); // Adds createdAt and updatedAt automatically
 
-const GatewayModels = mongoose.model('gatewaymodels', GatewaySchema);
+const DeviceModelFlowmeter = mongoose.model('DeviceModelFlowmeter', FlowmeterSchema);
 
-module.exports = GatewayModels;
+module.exports = DeviceModelFlowmeter;

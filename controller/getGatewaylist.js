@@ -1,7 +1,7 @@
-const GatewayModels = require('../models/gateway.model'); 
+const DeviceModelFlowmeter = require('../models/device.modelFlowmeter'); 
 const gatewayList = async(req, res)=>{
     try {
-       const data = await GatewayModels.find({}, { 'd_details.gatewayID': 1, _id: 0 });
+       const data = await DeviceModelFlowmeter.find({}, { 'd_details.gatewayID': 1, _id: 0 });
 
        const gatewayIDs = [...new Set(data.map(item=> item?.d_details?.gatewayID))];
         
