@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose');
 const { connectToDatabase } = require('./config/db.config');
 const Hardware = require('./routes/hardware.route');
+const Auth = require('./routes/authRoutes');
 const gatewayRoutes = require('./routes/gatewayRoutes');
 const cors = require('cors');
 // const timeout = require('connect-timeout');
@@ -58,6 +59,7 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
+app.use('/api/auth', Auth);
 app.use('/api/hardware', Hardware);
 app.use('/api', gatewayRoutes);
 
