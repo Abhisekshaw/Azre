@@ -6,7 +6,7 @@ const protect = require('../middleware/authMiddleware');
 
 
 // GET /gateway-data?start=unixStart&end=unixEnd
-router.post('/gateway-data',protect, getGatewayDataByTimeRange);
-router.get('/gateway-list',protect, gatewayList);
+router.post('/gateway-data', getGatewayDataByTimeRange);
+router.get('/gateway-list/:device', gatewayList);
 
 module.exports = router;

@@ -1,4 +1,5 @@
-const DeviceModelFlowmeter = require('../models/device.modelFlowmeter'); // Adjust the path as necessary
+const DeviceModelFlowmeter = require('../models/device.modelFlowmeter'); 
+const DeviceModelPlc = require('../models/device.modelPlc'); 
 
 /**
  * Get Gateway data within a time range (Unix timestamp in seconds)

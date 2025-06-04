@@ -1,10 +1,18 @@
-const DeviceModelFlowmeter = require('../models/device.modelFlowmeter'); 
-const gatewayList = async(req, res)=>{
-    try {
-       const data = await DeviceModelFlowmeter.find({}, { 'd_details.gatewayID': 1, _id: 0 });
+const DeviceModelFlowmeter = require('../models/device.modelFlowmeter');
+const DeviceModelPlc = require('../models/device.modelPlc');
 
-       const gatewayIDs = [...new Set(data.map(item=> item?.d_details?.gatewayID))];
-        
+const gatewayList = async (req, res) => {
+    const { device } = req.params
+    try {
+        let data
+        if (device === "Flowmeter") {
+
+            data = await DeviceModelFlowmeter.find({}, { 'd_details.gatewayID': 1, _id: 0 });
+        } else if (device === "Plc") {
+            data = await DeviceModelPlc.find({}, { 'd_details.gatewayID': 1, _id: 0 });
+        }
+        const gatewayIDs = [...new Set(data.map(item => item?.d_details?.gatewayID))];
+
         if (gatewayIDs.length === 0) {
             return res.status(404).json({ message: 'No gatewayIDs found' });
         }
@@ -14,4 +22,4 @@ const gatewayList = async(req, res)=>{
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 }
-module.exports = { gatewayList};
+module.exports = { gatewayList };
