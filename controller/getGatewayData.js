@@ -10,7 +10,7 @@ const DeviceModelPlc = require('../models/device.modelPlc');
 const getGatewayDataByTimeRange = async (req, res) => {
   try {
     // Extract query and route parameters
-    let { start, end } = req.body; // Use req.query for GET parameters
+    let { start, end, devices } = req.body; // Use req.query for GET parameters
     const { device } = req.params;
 
     console.log(`Received request to get gateway data from ${start} to ${end} for device ${device}`);
@@ -32,10 +32,12 @@ const getGatewayDataByTimeRange = async (req, res) => {
     // Validate and fetch data based on device type
     if (device === "Flowmeter") {
       records = await DeviceModelFlowmeter.find({
+        'd_details.gatewayID': devices,
         'd_details.timestamp': { $gte: start, $lte: end }
       });
     } else if (device === "Plc") {
       records = await DeviceModelPlc.find({
+        'd_details.gatewayID': devices,
         'd_details.timestamp': { $gte: start, $lte: end }
       });
     } else {
