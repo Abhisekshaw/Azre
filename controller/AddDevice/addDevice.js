@@ -37,7 +37,7 @@ exports.registerDevice = async (req, res) => {
       }
       const flowMeterDevice = new AddFlowMeter(deviceData);
       const savedDevice = await flowMeterDevice.save();
-      return res.status(201).json(savedDevice);
+      return res.status(201).json({sucess:true, message:`${devicetype} device is registered successfully `});
 
     } else {
       return res.status(400).json({ message: 'Invalid devicetype. Must be "plc" or "flowmeter"' });

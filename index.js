@@ -1,16 +1,26 @@
 const express = require('express');
 const app = express();
+const os = require('os');
+const cors = require('cors');
 const dotenv = require('dotenv')
 const mongoose = require('mongoose');
-const { connectToDatabase } = require('./config/db.config');
-const Hardware = require('./routes/hardware.route');
 const Auth = require('./routes/authRoutes');
+const ratelimit = require('express-rate-limit');
+const Hardware = require('./routes/hardware.route');
 const gatewayRoutes = require('./routes/gatewayRoutes');
-const cors = require('cors');
+const { connectToDatabase } = require('./config/db.config');
 // const timeout = require('connect-timeout');
+
+const apilimiter = ratelimit({
+    windowMS: 5*60*1000,
+    max:5,
+    message: 'Too many requests from this IP, please try again after 5 minutes.',
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
 dotenv.config();
 app.use(express.json());
-const os = require('os');
 app.use(cors());
 
 // Connect to the database
@@ -59,9 +69,9 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
-app.use('/api/auth', Auth);
+app.use('/api/auth',apilimiter, Auth);
+app.use('/api',apilimiter, gatewayRoutes);
 app.use('/api/hardware', Hardware);
-app.use('/api', gatewayRoutes);
 
 
 const PORT = process.env.PORT || 3030;
