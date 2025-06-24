@@ -24,7 +24,7 @@ exports.registerDevice = async (req, res) => {
     if (devicetype.toLowerCase() === 'plc') {
       existingDevice = await AddPlc.findOne({ deviceId });
       if (existingDevice) {
-        return res.status(409).json({ message: 'Device ID already registered as PLC' });
+        return res.status(409).json({ message: 'Device ID already registered' });
       }
       const plcDevice = new AddPlc(deviceData);
       const savedDevice = await plcDevice.save();
@@ -33,7 +33,7 @@ exports.registerDevice = async (req, res) => {
     } else if (devicetype.toLowerCase() === 'flowmeter' || devicetype.toLowerCase() === 'flow meter') {
       existingDevice = await AddFlowMeter.findOne({ deviceId });
       if (existingDevice) {
-        return res.status(409).json({ message: 'Device ID already registered as FlowMeter' });
+        return res.status(409).json({ message: 'Device ID already registered' });
       }
       const flowMeterDevice = new AddFlowMeter(deviceData);
       const savedDevice = await flowMeterDevice.save();
