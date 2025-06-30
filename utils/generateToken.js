@@ -4,7 +4,7 @@ const generateToken = (id , role) => {
     try {
         
         return jwt.sign({id, role}, process.env.JWT_SECRET,{
-            expiresIn: '5h',
+            expiresIn: '1d',
         });
     } catch (error) {
        console.log(error);
