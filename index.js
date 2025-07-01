@@ -70,7 +70,7 @@ app.get('/health', (req, res) => {
 
 // API Routes
 app.use('/api/auth',apilimiter, Auth);
-app.use('/api',apilimiter, gatewayRoutes);
+app.use('/api', gatewayRoutes);
 app.use('/api/hardware', Hardware);
 
 
